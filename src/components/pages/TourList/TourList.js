@@ -1,8 +1,8 @@
-import React from 'react'
-import Banner from './Banner'
-import Packages from './Packages'
+import React, { useState } from 'react'
+import Packages from '../Home/Packages'
 
-const Home = () => {
+const TourList = () => {
+    let [ searchTerm, setSearchTerm ] = useState('');
     let tours = [
         {
             id: "1",
@@ -28,12 +28,12 @@ const Home = () => {
     ]
 
     return (
-        <div>
-            <Banner />
-            <Packages tours={tours} searchTerm="" />
+        <div className='tour-list'>
+            <br /><br /><br /><br /><br /><br /><br />
+            <input type="text" value={searchTerm} onChange={e => setSearchTerm(e.target.value)} />
+            <Packages tours={tours} searchTerm={searchTerm} />
         </div>
-    ) 
+    )
 }
 
-export default Home 
-
+export default TourList

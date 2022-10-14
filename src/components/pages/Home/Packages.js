@@ -1,32 +1,7 @@
 import React from 'react'
+import Package from '../../Package'
 
-const Package = () => {
-    return (
-
-        <div className='package'>
-            <div className='imageSection'>
-                <img src='../../../../../images/Home/IMG_0693_Banner.jpg' />
-            </div>
-            <div className='detailSection'>
-                <div className='tourName'>
-                    Yala Safari
-                </div>
-                <div className='tourDescription'>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                    when an unknown printer took a galley of type and scrambled it to make a type
-                    specimen book.
-
-                </div>
-
-            </div>
-
-        </div>
-
-    )
-}
-const Packages = () => {
-    const packages = [1, 2, 3]
+const Packages = ({ tours, searchTerm }) => {
     return (
         <div className='packages'>
             <div className='bestSelling'>
@@ -34,7 +9,18 @@ const Packages = () => {
             </div>
             <div className='packageList'> 
                 {
-                 packages.map((item, i) => (<Package key={i}/>))
+                 tours.filter(tour => {
+                    if (searchTerm === "") {
+                        return true
+                    } else if (
+                        tour.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        tour.description.toLowerCase().includes(searchTerm.toLowerCase())
+                    ) {
+                        return true
+                    } else {
+                        return false
+                    }
+                 }).map((tour, i) => (<Package tour={tour} key={i}/>))
                 }</div>
            
         </div>
